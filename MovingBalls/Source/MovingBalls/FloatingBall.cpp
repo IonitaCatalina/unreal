@@ -38,9 +38,9 @@ void AFloatingBall::Tick(float DeltaTime)
 
 	// Get ball
 	FVector actorLocation = GetActorLocation();
-	actorLocation.X = (actorLocation.X + FMath::Cos(runningTime + DeltaTime) * radius);
-	actorLocation.Y = (actorLocation.Y + FMath::Sin(runningTime + DeltaTime) * radius);
-	actorLocation.Z = (actorLocation.Y + FMath::Sin(runningTime + DeltaTime) * radius);
+	actorLocation.X = (myCharacter->GetActorLocation().X + FMath::Cos(runningTime + DeltaTime) * radius);
+	actorLocation.Y = (myCharacter->GetActorLocation().Y + FMath::Sin(runningTime + DeltaTime) * radius);
+	actorLocation.Z = (myCharacter->GetActorLocation().Y + FMath::Sin(runningTime + DeltaTime) * radius);
 
 	runningTime += DeltaTime;
 
