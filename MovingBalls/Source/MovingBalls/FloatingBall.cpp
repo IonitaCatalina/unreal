@@ -2,6 +2,7 @@
 
 #include "MovingBalls.h"
 #include "FloatingBall.h"
+#include "MovingBallsCharacter.h"
 
 
 // Sets default values
@@ -16,7 +17,8 @@ AFloatingBall::AFloatingBall()
 	BallMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("BallMesh"));
 	BallMesh->AttachTo(RootComponent);
 
-	speedScale = 0.0f;
+	rotationSpeed = 0.0f;
+	radius = 0.0f;
 }
 
 // Called when the game starts or when spawned
@@ -30,6 +32,19 @@ void AFloatingBall::BeginPlay()
 void AFloatingBall::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	// Get character
+	ACharacter* myCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+
+	// Get ball
+	FVector actorLocation = GetActorLocation();
+	actorLocation.X = (actorLocation.X + FMath::Cos(runningTime + DeltaTime) * radius);
+	actorLocation.Y = (actorLocation.Y + FMath::Sin(runningTime + DeltaTime) * radius);
+	actorLocation.Z = (actorLocation.Y + FMath::Sin(runningTime + DeltaTime) * radius);
+
+	runningTime += DeltaTime;
+
+	SetActorLocation(actorLocation);
 
 }
 

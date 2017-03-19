@@ -29,7 +29,10 @@ public:
 		UStaticMeshComponent* BallMesh;
 
 	UPROPERTY(EditAnywhere)
-		float speedScale;
+		float rotationSpeed;
+
+	UPROPERTY(EditAnywhere)
+		float radius;
 
 	float runningTime;
 	
